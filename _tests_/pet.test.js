@@ -48,11 +48,58 @@ describe('growUp', () => {
     
 describe('walk', () => {
     it('increases fitness by 4', () => {
-        const pet = new Pet('fido');
+        const pet = new Pet('Fido');
         pet.fitness = 4;
         pet.walk();
         expect(pet.fitness).toEqual(8);
     });    
+        });
+});
+
+describe('checkup', () => {
+    it('fitness is 3 or less', () => {
+        const pet = new Pet('Fido');
+        pet.fitness = 3;
+        expect(pet.checkUp()).toBe('I need a walk');
+    });
+
+    it('hunger is 5 or more', () => {
+        const pet = new Pet('Fido');
+        pet.hunger = 5
+        expect(pet.checkUp()).toBe('I am hungry');
+    });
+
+    it('if both are true', () => {
+        const pet = new Pet('Fido')
+        pet.hunger = 5;
+        pet.fitness = 3;
+        expect(pet.checkUp()).toBe('I am hungry AND I need a walk');
+    });
+
+    it('if neither are true' , () => {
+        const pet = new Pet('Fido');
+        expect(pet.checkUp()).toBe('I feel great!');
+    }); 
+
+describe('isAlive', () => {
+    it('fitness is 0 or less', () => {
+        const pet = new Pet('Fido');
+        pet.fitness = 0;
+        expect(pet.isAlive()).toEqual(false);
+    });
+
+    it('hunger is 10 or more', () => {
+        const pet = new Pet('Fido');
+        pet.hunger = 10;
+        expect(pet.isAlive()).toEqual(false);
+    });
+
+    it('age is 30 or more', () => {
+        const pet = new Pet('Fido');
+        pet.age = 30;
+        expect(pet.isAlive()).toEqual(false)
+    });
+
 });
 
 });
